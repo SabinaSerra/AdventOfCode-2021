@@ -1,22 +1,16 @@
 import math
 from os import environ
 
-def is_prime(num):
-    return not any([(num % i == 0) for i in range(2, math.floor(math.sqrt(num)) + 1)])
-
 
 def solve_part1(input_list):
-    sum = 0
-    for idx, val in enumerate(input_list):
-        if is_prime(val):
-            sum += idx*val
-    return sum
+    result = [input_list[i-1] < input_list[i] for i in range(1, len(input_list))]
+    return sum(result)
 
 
 def solve_part2(input_list):
-    subtract = filter(lambda x: not is_prime(x), input_list[1::2])
-    add = filter(lambda x: not is_prime(x), input_list[::2])
-    return sum(add) - sum(subtract)
+    sums = [input_list[i-2] + input_list[i-1] + input_list[i] for i in range(2, len(input_list))]
+    return solve_part1(sums)
+
 
 def main():
     part = environ.get('part')
