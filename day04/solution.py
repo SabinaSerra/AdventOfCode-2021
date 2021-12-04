@@ -31,11 +31,13 @@ def get_next_bingo_board(called_numbers, boards):
                 if is_bingo(board, ind):
                     return (board_ind, board, number_ind, number)
 
+
 def solve_part1(input_list):
     called_numbers, boards = parse_input(input_list)
     _, bingo_board, _, number = get_next_bingo_board(called_numbers, boards)
     numbers = [int(x) if x != "X" else 0 for x in bingo_board]
     return sum(numbers)*int(number)
+
 
 def get_last_bingo_board_rec(called_numbers, boards):
     if len(boards) > 1:
