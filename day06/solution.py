@@ -1,18 +1,36 @@
 from os import environ
+from typing import DefaultDict 
 
+DAYS = 256
+NORMAL_SPAWN = 6
+FIRST_SPAWN = 8
+
+def shift_timers(timers):
+    new_timers = DefaultDict(lambda: 0)
+    new_fish = timers[0]
+    for time in range(0, FIRST_SPAWN):
+        new_timers[time] = timers[time+1]
+    new_timers[NORMAL_SPAWN] += new_fish
+    new_timers[FIRST_SPAWN] = new_fish
+    return new_timers
 
 def solve_part1(input_list):
-    return
+    timers = DefaultDict(lambda: 0)
+    for timer in input_list:
+        timers[timer] += 1
+    for day in range(DAYS):
+        timers = shift_timers(timers)      
+    return sum(timers.values())
 
 
 def solve_part2(input_list):
-    return
+    return solve_part1(input_list)
 
 
 def main():
     part = environ.get('part')
     with open('input.txt') as f:
-        file_input = [int(x) for x in f.readlines()]
+        file_input = [list(map(lambda timer: int(timer), x.strip().split(","))) for x in f.readlines()][0]
     if part == 'part1':
         print(solve_part1(file_input))
     else:
