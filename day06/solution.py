@@ -1,7 +1,6 @@
 from os import environ
 from typing import DefaultDict 
 
-DAYS = 256
 NORMAL_SPAWN = 6
 FIRST_SPAWN = 8
 
@@ -14,17 +13,21 @@ def shift_timers(timers):
     new_timers[FIRST_SPAWN] = new_fish
     return new_timers
 
-def solve_part1(input_list):
+def calc_fish(input_list, nr_days):
     timers = DefaultDict(lambda: 0)
     for timer in input_list:
         timers[timer] += 1
-    for day in range(DAYS):
+    for day in range(nr_days):
         timers = shift_timers(timers)      
     return sum(timers.values())
 
 
+def solve_part1(input_list):
+    return calc_fish(input_list, 80)
+
+
 def solve_part2(input_list):
-    return solve_part1(input_list)
+    return calc_fish(input_list, 256)
 
 
 def main():
