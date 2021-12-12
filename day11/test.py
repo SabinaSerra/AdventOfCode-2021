@@ -6,7 +6,7 @@ from pprint import pprint
 class TestSolution(unittest.TestCase):
 
     def test_step(self):
-        problem_input = [[5,4,8,3,1,4,3,2,2,3],
+        problem_input = np.array([[5,4,8,3,1,4,3,2,2,3],
                         [2,7,4,5,8,5,4,7,1,1],
                         [5,2,6,4,5,5,6,1,7,3],
                         [6,1,4,1,3,3,6,1,4,6],
@@ -15,7 +15,7 @@ class TestSolution(unittest.TestCase):
                         [2,1,7,6,8,4,1,7,2,1],
                         [6,8,8,2,8,8,1,1,3,4],
                         [4,8,4,6,8,4,8,5,5,4],
-                        [5,2,8,3,7,5,1,5,2,6]]
+                        [5,2,8,3,7,5,1,5,2,6]])
         expected_res1 = [[6,5,9,4,2,5,4,3,3,4],
                         [3,8,5,6,9,6,5,8,2,2],
                         [6,3,7,5,6,6,7,2,8,4],
@@ -38,19 +38,17 @@ class TestSolution(unittest.TestCase):
                         [9,0,0,0,0,0,0,8,7,6],
                         [8,7,0,0,0,0,6,8,4,8]]
         counter = solution.step(problem_input)
-        pprint(problem_input)
-        self.assertListEqual(problem_input, expected_res1)
+        self.assertListEqual(problem_input.tolist(), expected_res1)
         counter += solution.step(problem_input)
-        pprint(problem_input)
-        self.assertListEqual(problem_input, expected_res2)
+        self.assertListEqual(problem_input.tolist(), expected_res2)
 
 
     def test_flashes(self):
-        problem_input = [[1,1,1,1,1],
+        problem_input = np.array([[1,1,1,1,1],
                         [1,9,9,9,1],
                         [1,9,1,9,1],
                         [1,9,9,9,1],
-                        [1,1,1,1,1]]
+                        [1,1,1,1,1]])
 
         expected_res = [[3,4,5,4,3],
                         [4,0,0,0,4],
@@ -58,8 +56,7 @@ class TestSolution(unittest.TestCase):
                         [4,0,0,0,4],
                         [3,4,5,4,3]]
         counter = solution.step(problem_input)
-        pprint(problem_input)
-        self.assertListEqual(problem_input, expected_res)
+        self.assertListEqual(problem_input.tolist(), expected_res)
 
 
     def test_part1(self):
@@ -73,7 +70,7 @@ class TestSolution(unittest.TestCase):
                         [6,8,8,2,8,8,1,1,3,4],
                         [4,8,4,6,8,4,8,5,5,4],
                         [5,2,8,3,7,5,1,5,2,6]]
-        counter = solution.solve_part1(problem_input, num_steps=100)
+        counter = solution.solve_part1(np.array(problem_input), num_steps=100)
         print(problem_input)
         self.assertEqual(counter, 1656)
 
