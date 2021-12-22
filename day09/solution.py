@@ -24,6 +24,7 @@ def find_low_points(input_list: np.ndarray) -> np.ndarray:
     res = calc_low_points(right, input_list, res)
     return res
 
+
 def solve_part1(input_list: np.ndarray) -> np.ndarray:
     res = find_low_points(input_list)
     num_lowpoints = np.sum(res)
