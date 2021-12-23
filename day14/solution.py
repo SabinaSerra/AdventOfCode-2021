@@ -25,9 +25,7 @@ def solve_parts(polymer: str, rules: dict[str: str], steps):
     for i in range(steps):
         curr_pairs = calc_new_elements(element_counts, curr_pairs, rules)
     print(max(element_counts.values()) - min(element_counts.values()))
-
-    
-        
+  
 
 def parse_input(filename: str):
     with open(filename) as f:
